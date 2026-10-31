@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\PageController;
+use App\Http\Controllers\StudentController;
+use App\Models\Student;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +23,20 @@ Route::get('/', function () {
 });
 
 // Lessons 2-6: you will add your routes below this line.
+
+
+// Activity 6 (A): route parameter -> view
+Route::get('/hello/{name}', function (string $name) {
+    return view('hello', ['name' => $name]);
+});
+
+// Activity 6 (A): handled by a controller method, not a closure
+Route::get('/about', [PageController::class, 'about'])->name('about');
+
+// Activity 6 (B): resource controller (index, create, store, show, edit, update, destroy)
+Route::resource('students', StudentController::class);
+
+// Activity 6 (C): explicit binding — {roll} is resolved in AppServiceProvider::boot()
+Route::get('/roll/{roll}', function (Student $roll) {
+    return view('students.show', ['student' => $roll]);
+})->name('students.roll');

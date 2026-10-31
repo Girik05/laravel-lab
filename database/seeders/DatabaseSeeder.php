@@ -32,5 +32,15 @@ class DatabaseSeeder extends Seeder
                 'cgpa'       => $cgpa,
             ]);
         }
+
+        // Activity 6: my own record (Reg No: NSS23CS031)
+        Student::create([
+            'roll_no'    => '31',
+            'name'       => 'Girik Sagar',
+            'email'      => 'nss23cs031@example.com',
+            'department' => 'CSE',
+            'semester'   => 7,
+            'cgpa'       => null,
+        ]);
     }
 }
